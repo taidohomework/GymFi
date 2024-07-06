@@ -19,17 +19,44 @@
             <h2>Thông Tin Cá Nhân</h2>
             <div class="account-details">
                 <img src="avatar.png" alt="Avatar" class="avatar">
-                <p>Họ Tên: Nguyễn Văn A</p>
-                <p>Ngày Sinh: 01/01/1990</p>
-                <p>Email: nguyenvana@example.com</p>
-                <p>Ví Tích Lũy GYM Coin: 1000</p>
+                <p id="full-name">Họ Tên: </p>
+                <p id="birth-date">Ngày Sinh: </p>
+                <p id="email">Email: </p>
+                <p id="gym-coin">Ví Tích Lũy GYM Coin: </p>
+            </div>
+            <h2>Lịch Sử Quy Đổi</h2>
+            <div class="conversion-history">
+                <ul id="history-list"></ul>
             </div>
         </section>
     </main>
     <script>
         function handleLogout() {
             localStorage.removeItem('loggedIn');
+            localStorage.removeItem('currentUser');
         }
+
+        function loadUserData() {
+            const currentUserEmail = localStorage.getItem('currentUser');
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === currentUserEmail);
+
+            if (user) {
+                document.getElementById('full-name').textContent = `Họ Tên: ${user.firstName} ${user.lastName}`;
+                document.getElementById('birth-date').textContent = `Ngày Sinh: ${user.birthDate}`;
+                document.getElementById('email').textContent = `Email: ${user.email}`;
+                document.getElementById('gym-coin').textContent = `Ví Tích Lũy GYM Coin: ${user.gymCoin}`;
+
+                const historyList = document.getElementById('history-list');
+                user.conversionHistory.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Ngày: ${item.date}, Calories: ${item.calories}, GYM Coin: ${item.gymCoin}`;
+                    historyList.appendChild(listItem);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadUserData);
     </script>
 </body>
 </html>

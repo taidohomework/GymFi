@@ -11,25 +11,44 @@
         <h1>Đăng Nhập</h1>
         <nav>
             <a href="index.html">Trang Chủ</a>
-            <a href="login.html">Đăng Nhập</a>
+            <a href="register.html">Đăng Ký</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
             <h2>Đăng Nhập</h2>
-            <form>
+            <form id="login-form">
                 <div class="form-group">
-                    <label for="username">Tên đăng nhập:</label>
-                    <input type="text" id="username" name="username">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mật khẩu:</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit">Đăng Nhập</button>
             </form>
-            <p>Bạn chưa có tài khoản? <a href="signup.html">Đăng ký?</a></p>
         </section>
     </main>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('currentUser', email);
+                alert('Đăng nhập thành công!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Email hoặc mật khẩu không đúng.');
+            }
+        });
+    </script>
 </body>
 </html>

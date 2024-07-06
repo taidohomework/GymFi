@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị Viên</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quản Trị Viên</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <a href="login.html" onclick="handleLogout()">Đăng Xuất</a>
+        </nav>
+    </header>
+    <main>
+        <section id="user-list-section" class="centered-form">
+            <h2>Danh Sách Người Dùng</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>GYM Coin</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="user-list">
+                    <!-- Thông tin người dùng sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserList();
+        });
+
+        function loadUserList() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userList = document.getElementById('user-list');
+
+            userList.innerHTML = ''; // Clear the list before loading
+
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.gymCoin}</td>
+                    <td><button class="delete-btn" onclick="deleteUser(${index}, this)">Xóa</button></td>
+                `;
+                userList.appendChild(row);
+            });
+        }
+
+        function deleteUser(index, button) {
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.splice(index, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Remove the row from the table
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

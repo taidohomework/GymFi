@@ -18,30 +18,45 @@
     <main>
         <section class="centered-form">
             <h2>Nhận Coin Miễn Phí</h2>
-            <form>
+            <form onsubmit="handleConversion(event)">
                 <div class="form-group">
                     <label for="calories">Nhập số calories đã đốt:</label>
-                    <input type="number" id="calories" name="calories">
+                    <input type="number" id="calories" name="calories" required>
                 </div>
-                <button type="button" onclick="convertToCoin()">Quy Đổi</button>
+                <button type="submit">Quy Đổi</button>
             </form>
-            <p id="result"></p>
         </section>
     </main>
     <script>
-        function convertToCoin() {
+        function handleConversion(event) {
+            event.preventDefault();
             const calories = document.getElementById('calories').value;
-            const coins = calories * 0.1; // Ví dụ: 1 calorie = 0.1 coin
-            document.getElementById('result').innerText = `Bạn nhận được ${coins} coin.`;
+            const gymCoin = calories * 0.1; // Giả sử 1 calorie = 0.1 GYM Coin
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                user.gymCoin += gymCoin;
+                user.conversionHistory.push({
+                    date: new Date().toLocaleDateString(),
+                    calories,
+                    gymCoin
+                });
+                localStorage.setItem('user', JSON.stringify(user));
+                alert('Quy đổi thành công!');
+            } else {
+                alert('Bạn cần đăng nhập để quy đổi.');
+            }
         }
 
-        // Kiểm tra trạng thái đăng nhập
-        window.onload = function() {
-            if (localStorage.getItem('loggedIn') === 'true') {
+        function checkLoginStatus() {
+            const loggedIn = localStorage.getItem('loggedIn');
+            if (loggedIn === 'true') {
                 document.getElementById('login-link').style.display = 'none';
                 document.getElementById('account-link').style.display = 'inline';
             }
         }
+
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
 </html>
