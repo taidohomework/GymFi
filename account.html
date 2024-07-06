@@ -51,6 +51,7 @@
             <h2>Exchange history</h2>
             <div class="conversion-history">
                 <ul id="history-list"></ul>
+
             </div>
         </section>
     </main>
@@ -96,8 +97,30 @@
                 // Example: Call a method on the smart contract
                 await contract.methods.transfer(recipientAddress, web3.utils.toWei(amount.toString(), 'ether')).send({ from });
 
-                alert(`Successfully transferred ${amount} GYM Coin to ${recipientAddress}`);
-                loadUserData(); // Reload user data after transfer
+                // Save transaction details to conversion history
+                const transactionDetails = {
+                    calories: 100, // Replace with actual calories exchanged
+                    gymCoin: amount // Replace with actual GYM Coin amount exchanged
+                };
+
+                const currentUserEmail = localStorage.getItem('currentUser');
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(user => user.email === currentUserEmail);
+
+                if (userIndex !== -1) {
+                    // Update user's conversion history
+                    users[userIndex].conversionHistory.push(transactionDetails);
+
+                    // Update localStorage
+                    localStorage.setItem('users', JSON.stringify(users));
+
+                    // Reload user data after transfer
+                    loadUserData();
+                    alert(`Successfully transferred ${amount} GYM Coin to ${recipientAddress}`);
+                } else {
+                    alert('User not found.');
+                }
+
             } catch (error) {
                 console.error(error);
                 alert('Transaction failed.');
