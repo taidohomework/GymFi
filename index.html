@@ -6,49 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            /* Font chữ mặc định */
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
         }
 
         nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
+            justify-content: center;
+            gap: 20px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 10px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
-        #account-link {
-            display: none;
+        nav a:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
             align-items: center;
+            height: calc(100vh - 100px);
         }
 
-        #account-link img {
-            width: 30px;
-            height: 30px;
-            margin-right: 5px;
+        .centered-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .centered-form h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #4CAF50;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1> Welcome to "Vui Là 9" </h1>
+        <h1>Welcome to "Vui Là 9"</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a id="login-link" href="login.html">Login</a>
+            <!-- <a id="login-link" href="login.html">Login</a> -->
             <a id="account-link" href="account.html">Account</a>
         </nav>
     </header>

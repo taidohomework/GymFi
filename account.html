@@ -9,49 +9,119 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            /* Font chữ mặc định */
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
         }
 
         nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
+            justify-content: center;
+            gap: 20px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 10px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 100px);
+        }
+
+        .centered-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .centered-form h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+
+        .account-details p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .conversion-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .conversion-history li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Account information</h1>
+        <h1>Account Information</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="#" onclick="connectWallet()">Connect wallet</a>
-            <a href="#" onclick="transferGYMCoin()">Exchange GYM Coin</a>
-            <a href="login.html" onclick="handleLogout()">Log out</a>
+            <a href="login.html" onclick="handleLogout()">Log Out</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Your information</h2>
+            <h2>Your Information</h2>
             <div class="account-details">
                 <p id="full-name">Name: </p>
                 <p id="email">Email: </p>
-                <p id="gym-coin">GYM Coin Wallet: </p>
             </div>
-            <h2>Exchange history</h2>
+            <h2>GYM Coin Wallet</h2>
+            <div class="wallet-details">
+                <p id="gym-coin">GYM Coin Wallet: </p>
+                <a href="#" class="btn" onclick="connectWallet()">Connect Wallet</a>
+                <a href="#" class="btn" onclick="transferGYMCoin()">Exchange GYM Coin</a>
+            </div>
+            <h2>Exchange History</h2>
             <div class="conversion-history">
                 <ul id="history-list"></ul>
-
             </div>
         </section>
     </main>
