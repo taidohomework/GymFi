@@ -1,403 +1,47 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<meta name="robots" content="index, follow">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-    
-	<link rel="stylesheet" type="text/css" href="./all.css?1827">
-	
-    <title>Home</title>
-
-
-    
-<!-- Analytics -->
- 
-<!-- Analytics END -->
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Chào mừng đến với Website của chúng tôi</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <a id="login-link" href="login.html">Đăng Nhập</a>
+            <a id="account-link" href="account.html" style="display: none;">Account Details</a>
+        </nav>
+    </header>
+    <main>
+        <section class="centered-form">
+            <h2>Nhận Coin Miễn Phí</h2>
+            <form>
+                <div class="form-group">
+                    <label for="calories">Nhập số calories đã đốt:</label>
+                    <input type="number" id="calories" name="calories">
+                </div>
+                <button type="button" onclick="convertToCoin()">Quy Đổi</button>
+            </form>
+            <p id="result"></p>
+        </section>
+    </main>
+    <script>
+        function convertToCoin() {
+            const calories = document.getElementById('calories').value;
+            const coins = calories * 0.1; // Ví dụ: 1 calorie = 0.1 coin
+            document.getElementById('result').innerText = `Bạn nhận được ${coins} coin.`;
+        }
 
-<!-- Preloader -->
-<div id="page-loading-blocs-notifaction" class="page-preloader"></div>
-<!-- Preloader END -->
-
-
-<!-- Main container -->
-<div class="page-container">
-    
-<!-- hero -->
-<div class="bloc bloc-fill-screen primary-gradient-bg bgc-4580 l-bloc " id="hero">
-	<div class="container fill-bloc-top-edge">
-		<div class="row">
-			<div class="col-12">
-				<nav class="navbar row navbar-expand-md navbar-dark" role="navigation">
-					<div class="container-fluid ">
-						<a class="navbar-brand ltc-4279" href="index.html"><img src="img/lazyload-ph.png" data-src="img/shield.svg" alt="logo" class="me-2 lazyload" width="40" height="40">GymFi</a>
-						<button id="nav-toggle" type="button" class="ui-navbar-toggler navbar-toggler border-0 p-0 ms-auto me-md-0" aria-expanded="false" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target=".navbar-33797">
-							<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon " d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
-						</button>
-						<div class="collapse navbar-collapse navbar-16305 navbar-33797">
-								<ul class="site-navigation nav navbar-nav ms-auto">
-									<li class="nav-item">
-										<a href="index.html" class="nav-link  ltc-4279">Home</a>
-									</li>
-									<li class="nav-item">
-										<a href="./team/" class="a-btn nav-link ltc-4279">Team</a>
-									</li>
-									<li class="nav-item">
-										<a href="./contact/" class="a-btn nav-link ltc-4279">Contact</a>
-									</li>
-								</ul>
-							</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-			<div class="row">
-				<div class="offset-lg-1 col-lg-10">
-					<h1 class="text-center hero-heading tc-4279 mb-4">
-						Your Product Name <br>Would Look Fantastic Here
-					</h1>
-					<h3 class="float-none text-center hero-sub-heading tc-426">
-						A memorable sub-title would fit here nicely.
-					</h3>
-				</div>
-			</div>
-		</div>
-	<div class="container fill-bloc-bottom-edge">
-			<div class="row">
-				<div class="col-12 col-lg-10 offset-lg-1">
-					<div class="text-center">
-						<picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/app-screenshot-short.webp"><img src="img/lazyload-ph.png" data-src="img/app-screenshot-short.jpg" class="img-fluid mx-auto d-block app-offset-bottom hero-img lazyload" alt="app screenshot-short" width="946" height="552"></picture>
-					</div>
-				</div>
-			</div>
-		</div>
-</div>
-<!-- hero END -->
-
-<!-- feature -->
-<div class="bloc full-width-bloc tc-502 bgc-4279 l-bloc" id="feature">
-	<div class="container bloc-md-sm bloc-lg-md bloc-md">
-		<div class="row g-0">
-			<div class="col-lg-6 order-md-1 order-1 order-lg-0 offset-lg-0 offset-md-0 col-md-11 order-sm-1 offset-sm-0 col-sm-11 offset-0 col-11">
-				<picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/app-screenshot-left.webp"><img src="img/lazyload-ph.png" data-src="img/app-screenshot-left.jpg" class="img-fluid mx-auto d-block rounded-right custom-shadow lazyload" alt="app screenshot" width="1119" height="1019"></picture>
-			</div>
-			<div class="align-self-center offset-md-1 col-md-10 col-lg-4 col-sm-10 offset-sm-1 col-10 offset-1 order-md-0 text-center text-lg-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon lazyload" alt="cms icon" width="50" height="50">
-				<h2 class="feature-heading tc-458 mt-3 mb-4">
-					App Feature
-				</h2>
-				<p>
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-				</p><a href="./pricing/" class="btn btn-lg float-md-none btn-c-7096">Get Started</a>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- feature END -->
-
-<!-- feature-2 -->
-<div class="bloc full-width-bloc tc-502 bgc-3202 l-bloc" id="feature-2">
-	<div class="container bloc-md-sm bloc-lg-md bloc-md">
-		<div class="row g-0">
-			<div class="col-md-12 col-lg-6 order-lg-1 offset-lg-1 order-md-1 offset-md-1 order-sm-1 offset-sm-1 order-1 offset-1">
-				<picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/app-screenshot.webp"><img src="img/lazyload-ph.png" data-src="img/app-screenshot.jpg" class="img-fluid mx-auto d-block rounded-left custom-shadow lazyload" alt="app screenshot" width="1119" height="1019"></picture>
-			</div>
-			<div class="align-self-center offset-md-1 col-md-10 col-lg-4 col-sm-10 offset-sm-1 col-10 offset-1 order-md-0 text-center text-lg-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon lazyload" alt="cms icon" width="50" height="50">
-				<h2 class="feature-heading tc-458 mt-3 mb-4">
-					App Feature
-				</h2>
-				<p>
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-				</p><a href="./pricing/" class="btn btn-lg float-md-none btn-c-7096">Get Started</a>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- feature-2 END -->
-
-<!-- feature-cards -->
-<div class="bloc bgc-4279 l-bloc" id="feature-cards">
-	<div class="container bloc-lg bloc-xl-lg bloc-lg-sm">
-		<div class="row">
-			<div class="col-md-6 col-lg-4 col-sm-6">
-				<div class="card border-0 feature-card bgc-3202">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4 col-sm-6">
-				<div class="card border-0 feature-card bgc-3202">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4 col-sm-6">
-				<div class="card border-0 feature-card bgc-3202">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4 col-sm-6">
-				<div class="card border-0 feature-card bgc-3202">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4 col-sm-6">
-				<div class="card bgc-3202 border-0 feature-card">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4 offset-sm-0 col-sm-6">
-				<div class="card border-0 feature-card bgc-3202">
-					<div class="card-body">
-						<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid mx-auto d-block feature-icon feature-icon-center lazyload" alt="cms icon" width="50" height="50">
-						<h4 class="text-center tc-458 mt-3 mb-3">
-							Feature Title
-						</h4>
-						<p class="text-center">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- feature-cards END -->
-
-<!-- multiple-features -->
-<div class="bloc tc-426 primary-gradient-bg l-bloc" id="multiple-features">
-	<div class="container bloc-md-sm bloc-lg-md bloc-lg-lg bloc-md">
-		<div class="row">
-			<div class="col-lg-12 col-md-12 text-center text-sm-start">
-				<h2 class="feature-heading tc-4279 mb-4">
-					Main Feature Title
-				</h2>
-				<p class="sub-heading tc-426 mb-4">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 text-center text-sm-start feature-col">
-				<img src="img/lazyload-ph.png" data-src="img/cms-icon.svg" class="img-fluid float-lg-none feature-icon-trans lazyload" alt="cms icon" width="44" height="44">
-				<h4 class="tc-4279 mt-3 mb-3">
-					Feature Title
-				</h4>
-				<p class="tc-426">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- multiple-features END -->
-
-<!-- call-to -->
-<div class="bloc tc-426 none bgc-4279 l-bloc" id="call-to">
-	<div class="container bloc-xl-lg bloc-md-sm bloc-lg-md bloc-md">
-		<div class="row">
-			<div class="col">
-				<div class="cta-card primary-gradient-bg custom-shadow">
-					<div class="row g-0">
-						<div class="col-lg-5 col-md-12 text-center text-lg-start feature-col">
-							<h2 class="feature-heading tc-4279 mt-md-0 mt-lg-0 mt-3 mb-4">
-								Call-to-Action Title
-							</h2>
-							<p class="text-md-center text-center float-lg-none text-lg-start sub-heading tc-426">
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
-							</p><a href="./pricing/" class="btn white-btn btn-lg float-lg-none btn-c-4279">Get Started</a>
-						</div>
-						<div class="col-md-12 offset-lg-0 col-lg-7 d-sm-block d-none">
-							<picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/app-screenshot-hero.webp"><img src="img/lazyload-ph.png" data-src="img/app-screenshot-hero.jpg" class="img-fluid float-lg-none cta-card-img lazyload" alt="App Screenshot" width="595" height="351"></picture>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- call-to END -->
-
-<!-- ScrollToTop Button -->
-<button aria-label="Scroll to top button" class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></button>
-<!-- ScrollToTop Button END-->
-
-
-<footer>
-
-<!-- footer -->
-<div class="bloc tc-426 bgc-458 d-bloc" id="footer">
-	<div class="container bloc-md-sm bloc-lg-md bloc-md">
-		<div class="row">
-			<div class="col-lg-3 col-sm-12 col-md-12 mb-3">
-				<h4 class="text-sm-start text-start tc-4279 mb-4">
-					GymFi
-				</h4>
-				<p class="text-sm-start float-none text-start tc-426">
-					Place your company description here and any other useful information.
-				</p>
-			</div>
-			<div class="col-sm-6 col-lg-2 offset-lg-1 col-md-3 mb-3">
-				<h4 class="text-sm-start text-start tc-4279 mb-4">
-					About
-				</h4><a href="./team/" class="a-btn a-block">Team</a><a href="./pricing/" class="a-btn a-block">Pricing</a>
-			</div>
-			<div class="col-md-3 col-sm-6 col-lg-2 mb-3">
-				<h4 class="text-sm-start text-start tc-4279 mb-4">
-					Support
-				</h4><a href="index.html" class="a-btn a-block">Knowledge Base</a><a href="index.html" class="a-btn a-block">Contact</a><a href="./faq/" class="a-btn a-block">FAQ</a>
-			</div>
-			<div class="col-md-3 col-sm-6 col-lg-2 mb-3">
-				<h4 class="text-sm-start text-start tc-4279 mb-4">
-					Community
-				</h4><a href="index.html" class="a-btn a-block">Forum</a><a href="./faq/" class="a-btn a-block">Newsletter</a>
-			</div>
-			<div class="col-md-3 col-sm-6 col-lg-2">
-				<h4 class="text-sm-start text-start tc-4279 mb-4">
-					Subscribe
-				</h4>
-				<div><div class="social-link-bric">
-<a href="https://twitter.com/blocsapp" class="twitter-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="var(--swatch-var-7096)" viewBox="0 0 24 24" style="margin-left: 5px; margin-right: 5px;"><path d="m19 24h-14a5 5 0 0 1 -5-5v-14a5 5 0 0 1 5-5h14a5 5 0 0 1 5 5v14a5 5 0 0 1 -5 5zm.053-18.993h-2.453l-4.047 4.468-3.493-4.468h-5.06l6.047 7.646-5.734 6.337h2.454l4.426-4.89 3.867 4.89h4.94l-6.307-8.059zm-3.313 12.565-8.873-11.218h1.46l8.773 11.218z"></path></svg></a>
-
-<a href="https://www.facebook.com/cazoobi" class="facebook-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="var(--swatch-var-7096)" viewBox="0 0 24 24" style="margin-left: 5px; margin-right: 5px;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-3 7h-1.924c-.615 0-1.076.252-1.076.889v1.111h3l-.238 3h-2.762v8h-3v-8h-2v-3h2v-1.923c0-2.022 1.064-3.077 3.461-3.077h2.539v3z"></path></svg></a>
-
-<a href="https://www.instagram.com/cazoobi" class="instagram-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="var(--swatch-var-7096)" viewBox="0 0 24 24" style="margin-left: 5px; margin-right: 5px;"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"></path></svg></a>
-
-
-
-
-
-
-
-
-</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- footer END -->
-
-</footer>
-</div>
-<!-- Main container END -->
-    
-
-
-<!-- Additional JS --><script src="./js/jquery.min.js"></script>
-
-
-<script src="./js/all.js?291"></script>
-<!-- Additional JS END -->
-
-
+        // Kiểm tra trạng thái đăng nhập
+        window.onload = function() {
+            if (localStorage.getItem('loggedIn') === 'true') {
+                document.getElementById('login-link').style.display = 'none';
+                document.getElementById('account-link').style.display = 'inline';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Tài Khoản</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Thông Tin Tài Khoản</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <a href="login.html" onclick="handleLogout()">Đăng Xuất</a>
+        </nav>
+    </header>
+    <main>
+        <section class="centered-form">
+            <h2>Thông Tin Cá Nhân</h2>
+            <div class="account-details">
+                <img src="avatar.png" alt="Avatar" class="avatar">
+                <p>Họ Tên: Nguyễn Văn A</p>
+                <p>Ngày Sinh: 01/01/1990</p>
+                <p>Email: nguyenvana@example.com</p>
+                <p>Ví Tích Lũy GYM Coin: 1000</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        function handleLogout() {
+            localStorage.removeItem('loggedIn');
+        }
+    </script>
+</body>
+</html>
