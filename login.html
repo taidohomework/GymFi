@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
+
     <style>
         body {
-            font-family: Arial, sans-serif; /* Font chữ mặc định */
+            font-family: Arial, sans-serif;
+            /* Font chữ mặc định */
         }
 
         nav {
@@ -24,36 +28,35 @@
             text-decoration: none;
             margin-left: 10px;
         }
-
-       
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Đăng Nhập</h1>
+        <h1>Login</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="register.html">Đăng Ký</a>
+            <a href="index.html">Login</a>
+            <a href="register.html">Register</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Đăng Nhập</h2>
+            <h2>Login</h2>
             <form id="login-form">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Mật khẩu:</label>
+                    <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit">Đăng Nhập</button>
+                <button type="submit">Login</button>
             </form>
         </section>
     </main>
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
+        document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const email = document.getElementById('email').value;
@@ -73,4 +76,5 @@
         });
     </script>
 </body>
+
 </html>

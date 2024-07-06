@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông Tin Tài Khoản</title>
+    <title>Account</title>
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: Arial, sans-serif; /* Font chữ mặc định */
+            font-family: Arial, sans-serif;
+            /* Font chữ mặc định */
         }
 
         nav {
@@ -24,34 +27,83 @@
             text-decoration: none;
             margin-left: 10px;
         }
-
-       
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Thông Tin Tài Khoản</h1>
+        <h1>Account information</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="login.html" onclick="handleLogout()">Đăng Xuất</a>
+            <a href="index.html">Home</a>
+            <a href="#" onclick="connectWallet()">Connect wallet</a>
+            <a href="#" onclick="transferGYMCoin()">Exchange GYM Coin</a>
+            <a href="login.html" onclick="handleLogout()">Log out</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Thông Tin Cá Nhân</h2>
+            <h2>Your information</h2>
             <div class="account-details">
-                <img src="avatar.png" alt="Avatar" class="avatar">
-                <p id="full-name">Họ Tên: </p>
+                <p id="full-name">Name: </p>
                 <p id="email">Email: </p>
-                <p id="gym-coin">Ví Tích Lũy GYM Coin: </p>
+                <p id="gym-coin">GYM Coin Wallet: </p>
             </div>
-            <h2>Lịch Sử Quy Đổi</h2>
+            <h2>Exchange history</h2>
             <div class="conversion-history">
                 <ul id="history-list"></ul>
             </div>
         </section>
     </main>
     <script>
+        // Function to connect MetaMask wallet
+        async function connectWallet() {
+            // Modern dapp browsers (like MetaMask)
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    alert('Connected to MetaMask!');
+                    loadUserData(); // Reload user data after connection
+                } catch (error) {
+                    console.error(error);
+                    alert('Wallet connection failed.');
+                }
+            } else {
+                alert('Please install MetaMask.');
+            }
+        }
+
+        // Function to handle GYM Coin transfer
+        async function transferGYMCoin() {
+            const amount = 10; // Example amount to transfer
+            const recipientAddress = '0xRecipientAddress'; // Replace with actual recipient address
+
+            if (!window.ethereum) {
+                alert('Please connect MetaMask first.');
+                return;
+            }
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                const from = accounts[0];
+                const web3 = new Web3(window.ethereum);
+
+                // Example contract interaction (replace with your actual contract ABI and address)
+                const contractAddress = '0xContractAddress';
+                const contractABI = []; // Replace with your contract ABI
+
+                const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+                // Example: Call a method on the smart contract
+                await contract.methods.transfer(recipientAddress, web3.utils.toWei(amount.toString(), 'ether')).send({ from });
+
+                alert(`Successfully transferred ${amount} GYM Coin to ${recipientAddress}`);
+                loadUserData(); // Reload user data after transfer
+            } catch (error) {
+                console.error(error);
+                alert('Transaction failed.');
+            }
+        }
+
         function handleLogout() {
             localStorage.removeItem('loggedIn');
             localStorage.removeItem('currentUser');
@@ -63,14 +115,15 @@
             const user = users.find(user => user.email === currentUserEmail);
 
             if (user) {
-                document.getElementById('full-name').textContent = `Họ Tên: ${user.firstName} ${user.lastName}`;
+                document.getElementById('full-name').textContent = `Name: ${user.firstName} ${user.lastName}`;
                 document.getElementById('email').textContent = `Email: ${user.email}`;
-        
-        // Load số coin từ localStorage và hiển thị
+
+                // Load số coin từ localStorage và hiển thị
                 let gymCoin = parseFloat(localStorage.getItem('gymCoin')) || 0;
-                document.getElementById('gym-coin').textContent = `Ví Tích Lũy GYM Coin: ${gymCoin.toFixed(2)}`;
+                document.getElementById('gym-coin').textContent = `GYM Coin Wallet: ${gymCoin.toFixed(2)}`;
 
                 const historyList = document.getElementById('history-list');
+                historyList.innerHTML = ''; // Clear previous history
                 user.conversionHistory.forEach(item => {
                     const listItem = document.createElement('li');
                     listItem.textContent = `Calories: ${item.calories}, GYM Coin: ${item.gymCoin}`;
@@ -78,9 +131,9 @@
                 });
             }
         }
-        
 
         document.addEventListener('DOMContentLoaded', loadUserData);
     </script>
 </body>
+
 </html>

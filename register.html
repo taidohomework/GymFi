@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Ký</title>
+    <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
+
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: Arial, sans-serif; /* Font chữ mặc định */
+            font-family: Arial, sans-serif;
+            /* Font chữ mặc định */
         }
 
         nav {
@@ -24,45 +28,45 @@
             text-decoration: none;
             margin-left: 10px;
         }
-
-       
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Đăng Ký</h1>
+        <h1>Register</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="login.html">Đăng Nhập</a>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Đăng Ký Tài Khoản</h2>
+            <h2>Register account</h2>
             <form id="register-form">
                 <div class="form-group">
-                    <label for="first_name">Họ:</label>
+                    <label for="first_name">First name:</label>
                     <input type="text" id="first_name" name="first_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Tên:</label>
+                    <label for="last_name">Last name:</label>
                     <input type="text" id="last_name" name="last_name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
-                    <span id="email-error" style="color: red; display: none;">Email này đã được đăng ký. Vui lòng sử dụng email khác.</span>
+                    <span id="email-error" style="color: red; display: none;">Email này đã được đăng ký. Vui lòng sử
+                        dụng email khác.</span>
                 </div>
                 <div class="form-group">
-                    <label for="password">Mật khẩu:</label>
+                    <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit">Đăng Ký</button>
+                <button type="submit">Register</button>
             </form>
         </section>
     </main>
     <script>
-        document.getElementById('register-form').addEventListener('submit', function(event) {
+        document.getElementById('register-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const firstName = document.getElementById('first_name').value;
@@ -101,4 +105,5 @@
         });
     </script>
 </body>
+
 </html>

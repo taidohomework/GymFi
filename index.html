@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ</title>
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif; /* Font chữ mặc định */
+            font-family: Arial, sans-serif;
+            /* Font chữ mặc định */
         }
 
         nav {
@@ -38,27 +42,25 @@
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Chào mừng đến với Website của chúng tôi</h1>
+        <h1> Welcome to "Vui Là 9" </h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a id="login-link" href="login.html">Đăng Nhập</a>
-            <a id="account-link" href="account.html">
-                <img src="user.png" alt="User">
-                Account
-            </a>
+            <a href="index.html">Home</a>
+            <a id="login-link" href="login.html">Login</a>
+            <a id="account-link" href="account.html">Account</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Nhận Coin Miễn Phí</h2>
+            <h2>Getting coins for free</h2>
             <form>
                 <div class="form-group">
-                    <label for="calories">Nhập số calories đã đốt:</label>
+                    <label for="calories">🔥 Input your burning calories:</label>
                     <input type="number" id="calories" name="calories">
                 </div>
-                <button type="button" onclick="convertToCoin()">Quy Đổi</button>
+                <button type="button" onclick="convertToCoin()">Exchange</button>
             </form>
             <p id="result"></p>
         </section>
@@ -84,7 +86,7 @@
         }
 
         // Kiểm tra trạng thái đăng nhập
-        window.onload = function() {
+        window.onload = function () {
             if (localStorage.getItem('loggedIn') === 'true') {
                 document.getElementById('login-link').style.display = 'none';
                 document.getElementById('account-link').style.display = 'flex';
@@ -92,4 +94,5 @@
         }
     </script>
 </body>
+
 </html>

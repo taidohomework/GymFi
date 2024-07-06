@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Trị Viên</title>
+    <title>Admin</title>
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
+
     <link rel="stylesheet" href="style.css">
     <style>
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
         }
+
         th {
             background-color: #f2f2f2;
             text-align: left;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         tr:hover {
             background-color: #ddd;
         }
+
         .delete-btn {
             background-color: #ff4d4d;
             color: white;
@@ -33,22 +42,23 @@
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Quản Trị Viên</h1>
+        <h1>Admin</h1>
         <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="login.html" onclick="handleLogout()">Đăng Xuất</a>
+            <a href="index.html">Home</a>
+            <a href="login.html" onclick="handleLogout()">Log out</a>
         </nav>
     </header>
     <main>
         <section id="user-list-section" class="centered-form">
-            <h2>Danh Sách Người Dùng</h2>
+            <h2>List of users</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Họ</th>
-                        <th>Tên</th>
+                        <th>Last name</th>
+                        <th>First name</th>
                         <th>Email</th>
                         <th>GYM Coin</th>
                         <th>Hành Động</th>
@@ -61,7 +71,7 @@
         </section>
     </main>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadUserList();
         });
 
@@ -100,4 +110,5 @@
         }
     </script>
 </body>
+
 </html>
