@@ -109,8 +109,8 @@
         <h1>Welcome to "Vui Là 9"</h1>
         <nav>
             <a href="index.html">Home</a>
-            <!-- <a id="login-link" href="login.html">Login</a> -->
-            <a id="account-link" href="account.html">Account</a>
+            <a id="login-link" href="login.html">Login</a>
+            <a id="account-link" href="account.html" style="display: none;">Account</a>
         </nav>
     </header>
     <main>
@@ -151,6 +151,9 @@
             if (localStorage.getItem('loggedIn') === 'true') {
                 document.getElementById('login-link').style.display = 'none';
                 document.getElementById('account-link').style.display = 'flex';
+            } else {
+                document.getElementById('login-link').style.display = 'flex';
+                document.getElementById('account-link').style.display = 'none';
             }
         }
     </script>
