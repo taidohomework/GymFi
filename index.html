@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font chữ mặc định */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        #account-link {
+            display: none;
+            align-items: center;
+        }
+
+        #account-link img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,51 +44,52 @@
         <nav>
             <a href="index.html">Trang Chủ</a>
             <a id="login-link" href="login.html">Đăng Nhập</a>
-            <a id="account-link" href="account.html" style="display: none;">Account Details</a>
+            <a id="account-link" href="account.html">
+                <img src="user.png" alt="User">
+                Account
+            </a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
             <h2>Nhận Coin Miễn Phí</h2>
-            <form onsubmit="handleConversion(event)">
+            <form>
                 <div class="form-group">
                     <label for="calories">Nhập số calories đã đốt:</label>
-                    <input type="number" id="calories" name="calories" required>
+                    <input type="number" id="calories" name="calories">
                 </div>
-                <button type="submit">Quy Đổi</button>
+                <button type="button" onclick="convertToCoin()">Quy Đổi</button>
             </form>
+            <p id="result"></p>
         </section>
     </main>
     <script>
-        function handleConversion(event) {
-            event.preventDefault();
+        function convertToCoin() {
             const calories = document.getElementById('calories').value;
-            const gymCoin = calories * 0.1; // Giả sử 1 calorie = 0.1 GYM Coin
+            const coins = calories * 0.1; // Ví dụ: 1 calorie = 0.1 coin
+            document.getElementById('result').innerText = `Bạn nhận được ${coins} coin.`;
 
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (user) {
-                user.gymCoin += gymCoin;
-                user.conversionHistory.push({
-                    date: new Date().toLocaleDateString(),
-                    calories,
-                    gymCoin
-                });
-                localStorage.setItem('user', JSON.stringify(user));
-                alert('Quy đổi thành công!');
-            } else {
-                alert('Bạn cần đăng nhập để quy đổi.');
+            // Lấy giá trị hiện tại từ localStorage (nếu có) và cộng thêm số coin mới
+            let gymCoin = parseFloat(localStorage.getItem('gymCoin')) || 0;
+            gymCoin += coins;
+
+            // Lưu giá trị mới vào localStorage
+            localStorage.setItem('gymCoin', gymCoin);
+
+            // Cập nhật hiển thị số coin trên giao diện
+            const gymCoinElement = document.getElementById('gym-coin');
+            if (gymCoinElement) {
+                gymCoinElement.textContent = `Ví Tích Lũy GYM Coin: ${gymCoin.toFixed(2)}`;
             }
         }
 
-        function checkLoginStatus() {
-            const loggedIn = localStorage.getItem('loggedIn');
-            if (loggedIn === 'true') {
+        // Kiểm tra trạng thái đăng nhập
+        window.onload = function() {
+            if (localStorage.getItem('loggedIn') === 'true') {
                 document.getElementById('login-link').style.display = 'none';
-                document.getElementById('account-link').style.display = 'inline';
+                document.getElementById('account-link').style.display = 'flex';
             }
         }
-
-        document.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
 </html>

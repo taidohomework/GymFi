@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông Tin Tài Khoản</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font chữ mặc định */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+       
+    </style>
 </head>
 <body>
     <header>
@@ -20,7 +42,6 @@
             <div class="account-details">
                 <img src="avatar.png" alt="Avatar" class="avatar">
                 <p id="full-name">Họ Tên: </p>
-                <p id="birth-date">Ngày Sinh: </p>
                 <p id="email">Email: </p>
                 <p id="gym-coin">Ví Tích Lũy GYM Coin: </p>
             </div>
@@ -43,18 +64,21 @@
 
             if (user) {
                 document.getElementById('full-name').textContent = `Họ Tên: ${user.firstName} ${user.lastName}`;
-                document.getElementById('birth-date').textContent = `Ngày Sinh: ${user.birthDate}`;
                 document.getElementById('email').textContent = `Email: ${user.email}`;
-                document.getElementById('gym-coin').textContent = `Ví Tích Lũy GYM Coin: ${user.gymCoin}`;
+        
+        // Load số coin từ localStorage và hiển thị
+                let gymCoin = parseFloat(localStorage.getItem('gymCoin')) || 0;
+                document.getElementById('gym-coin').textContent = `Ví Tích Lũy GYM Coin: ${gymCoin.toFixed(2)}`;
 
                 const historyList = document.getElementById('history-list');
                 user.conversionHistory.forEach(item => {
                     const listItem = document.createElement('li');
-                    listItem.textContent = `Ngày: ${item.date}, Calories: ${item.calories}, GYM Coin: ${item.gymCoin}`;
+                    listItem.textContent = `Calories: ${item.calories}, GYM Coin: ${item.gymCoin}`;
                     historyList.appendChild(listItem);
                 });
             }
         }
+        
 
         document.addEventListener('DOMContentLoaded', loadUserData);
     </script>
