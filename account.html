@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
+    <title>Thông Tin Tài Khoản</title>
     <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -100,56 +100,56 @@
 
 <body>
     <header>
-        <h1>Account Information</h1>
+        <h1>Thông Tin Tài Khoản</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html" onclick="handleLogout()">Log Out</a>
+            <a href="index.html">Trang Chủ</a>
+            <a href="login.html" onclick="handleLogout()">Đăng Xuất</a>
+            <a id="block-link" href="block.html">Block</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Your Information</h2>
+            <h2>Thông Tin Của Bạn</h2>
             <div class="account-details">
-                <p id="full-name">Name: </p>
+                <p id="full-name">Tên: </p>
                 <p id="email">Email: </p>
             </div>
-            <h2>GYM Coin Wallet</h2>
+            <h2>Ví GYM Coin</h2>
             <div class="wallet-details">
-                <p id="gym-coin">GYM Coin Wallet: </p>
-                <a href="#" class="btn" onclick="connectWallet()">Connect Wallet</a>
-                <a href="#" class="btn" onclick="transferGYMCoin()">Exchange GYM Coin</a>
+                <p id="gym-coin">Ví GYM Coin: </p>
+                <a href="#" class="btn" onclick="connectWallet()">Kết Nối Ví</a>
+                <a href="#" class="btn" onclick="transferGYMCoin()">Đổi GYM Coin</a>
             </div>
-            <h2>Exchange History</h2>
+            <h2>Lịch Sử Đổi</h2>
             <div class="conversion-history">
                 <ul id="history-list"></ul>
             </div>
+            <h2>Sản Phẩm Đã Mua</h2>
+            <ul id="purchased-products-list"></ul>
         </section>
     </main>
     <script>
-        // Function to connect MetaMask wallet
         async function connectWallet() {
-            // Modern dapp browsers (like MetaMask)
             if (window.ethereum) {
                 try {
                     await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    alert('Connected to MetaMask!');
-                    loadUserData(); // Reload user data after connection
+                    alert('Đã kết nối với MetaMask!');
+                    loadUserData(); 
                 } catch (error) {
                     console.error(error);
-                    alert('Wallet connection failed.');
+                    alert('Kết nối ví thất bại.');
                 }
             } else {
-                alert('Please install MetaMask.');
+                alert('Vui lòng cài đặt MetaMask.');
             }
         }
 
-        // Function to handle GYM Coin transfer
         async function transferGYMCoin() {
-            const amount = 10; // Example amount to transfer
-            const recipientAddress = '0xRecipientAddress'; // Replace with actual recipient address
+            const amount = 10; 
+            const recipientAddress = '0xRecipientAddress';
 
             if (!window.ethereum) {
-                alert('Please connect MetaMask first.');
+                alert('Vui lòng kết nối MetaMask trước.');
                 return;
             }
 
@@ -158,19 +158,16 @@
                 const from = accounts[0];
                 const web3 = new Web3(window.ethereum);
 
-                // Example contract interaction (replace with your actual contract ABI and address)
                 const contractAddress = '0xContractAddress';
-                const contractABI = []; // Replace with your contract ABI
+                const contractABI = []; 
 
                 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-                // Example: Call a method on the smart contract
                 await contract.methods.transfer(recipientAddress, web3.utils.toWei(amount.toString(), 'ether')).send({ from });
 
-                // Save transaction details to conversion history
                 const transactionDetails = {
-                    calories: 100, // Replace with actual calories exchanged
-                    gymCoin: amount // Replace with actual GYM Coin amount exchanged
+                    calories: 100,
+                    gymCoin: amount 
                 };
 
                 const currentUserEmail = localStorage.getItem('currentUser');
@@ -178,22 +175,19 @@
                 const userIndex = users.findIndex(user => user.email === currentUserEmail);
 
                 if (userIndex !== -1) {
-                    // Update user's conversion history
                     users[userIndex].conversionHistory.push(transactionDetails);
 
-                    // Update localStorage
                     localStorage.setItem('users', JSON.stringify(users));
 
-                    // Reload user data after transfer
                     loadUserData();
-                    alert(`Successfully transferred ${amount} GYM Coin to ${recipientAddress}`);
+                    alert(`Đã chuyển thành công ${amount} GYM Coin tới ${recipientAddress}`);
                 } else {
-                    alert('User not found.');
+                    alert('Không tìm thấy người dùng.');
                 }
 
             } catch (error) {
                 console.error(error);
-                alert('Transaction failed.');
+                alert('Giao dịch thất bại.');
             }
         }
 
@@ -208,15 +202,24 @@
             const user = users.find(user => user.email === currentUserEmail);
 
             if (user) {
-                document.getElementById('full-name').textContent = `Name: ${user.firstName} ${user.lastName}`;
+                document.getElementById('full-name').textContent = `Tên: ${user.firstName} ${user.lastName}`;
                 document.getElementById('email').textContent = `Email: ${user.email}`;
 
-                // Load số coin từ localStorage và hiển thị
                 let gymCoin = parseFloat(localStorage.getItem('gymCoin')) || 0;
-                document.getElementById('gym-coin').textContent = `GYM Coin Wallet: ${gymCoin.toFixed(2)}`;
+                document.getElementById('gym-coin').textContent = `GYM Coin trong ví: ${gymCoin.toFixed(2)}`;
+
+                const purchasedProducts = JSON.parse(localStorage.getItem('purchasedProducts')) || [];
+                const purchasedProductsList = document.getElementById('purchased-products-list');
+                purchasedProductsList.innerHTML = '';
+
+                purchasedProducts.forEach(product => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = product;
+                    purchasedProductsList.appendChild(listItem);
+                });
 
                 const historyList = document.getElementById('history-list');
-                historyList.innerHTML = ''; // Clear previous history
+                historyList.innerHTML = ''; 
                 user.conversionHistory.forEach(item => {
                     const listItem = document.createElement('li');
                     listItem.textContent = `Calories: ${item.calories}, GYM Coin: ${item.gymCoin}`;

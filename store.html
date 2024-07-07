@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    
+        nav a:hover {
+            background-color: #45a049;
+        }
+    
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 150px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #45a049(0, 0, 0, 0.1);
+            max-height: 80vh; /* Giới hạn chiều cao của vùng chứa */
+            overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá kích thước của vùng chứa */
+        }
+    
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+    
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    
+        .product h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+    
+        .product p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+    
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to "Vui Là 9"</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a id="account-link"href="account.html">Account</a>
+            <a id="login-link" href="login.html">Login</a>
+            <a id="store-link" href="store.html">Store</a>
+            <a id="block-link" href="block.html">Block</a>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="product">
+            <img src="hoivien.jpg">
+            <h3>Membership Card</h3>
+            <p>7-day membership card at the Gym</p>
+            <p>Price: 3000 GC</p>
+            <a href="#" class="btn" onclick="buyProduct(3000)">Buy Now</a>
+        </div>
+
+        <div class="product">
+            <img src="hoivien.jpg">
+            <h3>1 month Membership Card</h3>
+            <p>1 month membership card at the Gym</p>
+            <p>Price: 6000 GC</p>
+            <a href="#" class="btn" onclick="buyProduct(6000)">Buy Now</a>
+        </div>
+
+        <div class="product">
+            <img src="hoivien.jpg">
+            <h3>6 month Membership Card</h3>
+            <p>6 month membership card at the gym</p>
+            <p>Price: 9000 GC</p>
+            <a href="#" class="btn" onclick="buyProduct(9000)">Buy Now</a>
+        </div>
+
+        <div class="product">
+            <img src="hoivien.jpg">
+            <h3>Membership Card 1 year</h3>
+            <p>1 year membership card at the gym</p>
+            <p>Price: 20000 GC</p>
+            <a href="#" class="btn" onclick="buyProduct(20000)">Buy Now</a>
+        </div>
+
+        <div class="product">
+            <img src="hoivien.jpg">
+            <h3>Permanent Membership Card</h3>
+            <p>Permanent membership card at the gym</p>
+            <p>Price: 30000 GC</p>
+            <a href="#" class="btn" onclick="buyProduct(30000)">Buy Now</a>
+        </div>
+        <div class="product">
+            <div class="product-details">
+                <h3>Bình Nước Thể Thao</h3>
+                <p>Mô tả về bình nước thể thao ở đây.</p>
+                <p class="price">5 GYM Coins</p>
+                <a href="#" class="btn" onclick="buyProduct(5)">Buy Now</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function buyProduct(price) {
+            const gymCoinWallet = parseFloat(localStorage.getItem('gymCoin')) || 0;
+
+            if (gymCoinWallet < price) {
+                alert('Không đủ GYM Coin trong ví của bạn.');
+                return;
+            }
+
+            const confirmed = confirm(`Bạn có muốn mua sản phẩm này với giá ${price} GC không?`);
+            if (confirmed) {
+        // Trừ số GYM Coin từ ví
+                const newBalance = gymCoinWallet - price;
+                localStorage.setItem('gymCoin', newBalance.toFixed(2));
+
+        // Lưu thông tin sản phẩm đã mua (ví dụ: tên sản phẩm)
+                const productName = document.querySelector('h3').textContent;
+                let purchasedProducts = JSON.parse(localStorage.getItem('purchasedProducts')) || [];
+                purchasedProducts.push(productName);
+                localStorage.setItem('purchasedProducts', JSON.stringify(purchasedProducts));
+
+                alert(`Đã mua sản phẩm thành công với giá ${price} GC.`);
+                updateWalletDisplay(newBalance); // Cập nhật số dư ví hiển thị
+
+        // Chuyển hướng đến account.html sau khi mua hàng
+                window.location.href = 'account.html';
+            }
+        }
+
+                function updateWalletDisplay(balance) {
+                    document.getElementById('gym-coin').textContent = `GYM Coin Wallet: ${balance.toFixed(2)}`;
+                }
+                window.onload = function () {
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('account-link').style.display = 'flex';
+        } else {
+            document.getElementById('login-link').style.display = 'flex';
+            document.getElementById('account-link').style.display = 'none';
+        }
+    }
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Block</title>
     <link rel="icon" type="image/x-icon" href="./images/GymFi.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -47,6 +47,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: calc(100vh - 100px);
         }
 
@@ -57,6 +58,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 600px;
+            margin-bottom: 20px;
         }
 
         .centered-form h2 {
@@ -101,6 +103,33 @@
             font-size: 1.2em;
             color: #4CAF50;
         }
+
+        .block-list {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            padding: 50px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(7, 224, 105, 0.1);
+            margin-right: 50px;
+        }
+
+        .block-list h3 {
+            color: #4CAF50;
+            margin-top: 0cqi;
+            
+        }
+
+        .block-list ul {
+            list-style-type: none;
+            padding: 0;
+            
+        }
+
+        .block-list ul li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
@@ -109,60 +138,36 @@
         <h1>Welcome to "Vui Là 9"</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a id="login-link" href="login.html">Login</a>
-            <a id="account-link" href="account.html" style="display: none;">Account</a>
+            <a id="account-link" href="account.html">Account</a>
             <a id="store-link" href="store.html">Store</a>
-            <a id="block-link" href="block.html">Block</a>
+            <a href="block.html">Block</a>
         </nav>
     </header>
     <main>
         <section class="centered-form">
-            <h2>Getting coins for free</h2>
-            <form>
-                <div class="form-group">
-                    <label for="calories">🔥 Input your burning calories:</label>
-                    <input type="number" id="calories" name="calories">
-                </div>
-                <button type="button" onclick="convertToCoin()">Exchange</button>
-            </form>
-            <p id="result"></p>
+            <h2>Calories and Coins</h2>
+            <div class="block-list" id="calo-coin-list">
+                <h3>Calories and Coins History</h3>
+                <ul id="calo-coin-history">
+                    <!-- Placeholder for dynamically added items -->
+                </ul>
+            </div>
         </section>
     </main>
     <script>
-        function convertToCoin() {
-            const calories = parseFloat(document.getElementById('calories').value);
-            const coins = calories * 0.1; // Ví dụ: 1 calorie = 0.1 coin
-            document.getElementById('result').innerText = `Bạn nhận được ${coins} coin.`;
-
-            // Lấy giá trị hiện tại từ localStorage (nếu có) và cộng thêm số coin mới
-            let gymCoin = parseFloat(localStorage.getItem('gymCoin')) || 0;
-            gymCoin += coins;
-
-            // Lưu giá trị mới vào localStorage
-            localStorage.setItem('gymCoin', gymCoin);
-
-            // Lưu lịch sử calories và coins vào localStorage
-            let history = JSON.parse(localStorage.getItem('caloCoinHistory')) || [];
-            history.push({ calories: calories, coins: coins });
-            localStorage.setItem('caloCoinHistory', JSON.stringify(history));
-
-            // Cập nhật hiển thị số coin trên giao diện
-            const gymCoinElement = document.getElementById('gym-coin');
-            if (gymCoinElement) {
-                gymCoinElement.textContent = `Ví Tích Lũy GYM Coin: ${gymCoin.toFixed(2)}`;
-            }
-        }
-
-        // Kiểm tra trạng thái đăng nhập
+        // Load and display calorie and coin history
         window.onload = function () {
-            if (localStorage.getItem('loggedIn') === 'true') {
-                document.getElementById('login-link').style.display = 'none';
-                document.getElementById('account-link').style.display = 'flex';
-            } else {
-                document.getElementById('login-link').style.display = 'flex';
-                document.getElementById('account-link').style.display = 'none';
-            }
+            const history = JSON.parse(localStorage.getItem('caloCoinHistory')) || [];
+            const caloCoinListElement = document.getElementById('calo-coin-list').querySelector('ul');
+
+            history.forEach(entry => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Calories: ${entry.calories}, Coins: ${entry.coins.toFixed(2)}`;
+                caloCoinListElement.appendChild(listItem);
+            });
         }
+        
+
     </script>
 </body>
 
